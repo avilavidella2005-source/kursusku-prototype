@@ -1,4 +1,5 @@
 <?php
+
 require_once __DIR__ . '/helpers.php';
 
 $siteName = 'KursusKu';
@@ -55,109 +56,190 @@ $courses = [
         'start_date' => '2026-10-03',
     ],
 ];
+
 ?>
 
 <!DOCTYPE html>
 <html lang="id">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title><?= $siteName ?></title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <link rel="stylesheet" href="style.css">
+    <title><?= htmlspecialchars($siteName) ?></title>
+
+    <!-- CSS berada langsung di folder project -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
 </head>
 
 <body>
 
-<main>
-    <body>
-
 <header class="site-header">
-    <nav>
-        <a href="#keunggulan">Keunggulan</a>
-        <a href="#katalog">Katalog</a>
-        <a href="#pendaftaran">Pendaftaran</a>
-        <a href="#kontak">Kontak</a>
+
+    <nav class="navbar">
+
+        <div class="container">
+
+            <a href="index.php">
+                Beranda
+            </a>
+
+            <a href="index.php#katalog">
+                Katalog
+            </a>
+
+            <a href="registration.php">
+                Daftar Kursus
+            </a>
+
+            <a href="index.php#keunggulan">
+                Keunggulan
+            </a>
+
+            <a href="index.php#kontak">
+                Kontak
+            </a>
+
+        </div>
+
     </nav>
+
 </header>
 
+
 <main>
+
+    <!-- HERO -->
     <section class="hero">
 
-    <div>
-        <h1><?= $siteName ?></h1>
+        <div>
 
-        <p><?= $tagline ?></p>
+            <h1>
+                <?= htmlspecialchars($siteName) ?>
+            </h1>
 
-        <a href="#katalog" class="cta">
-            Lihat Katalog Kursus
-        </a>
-    </div>
+            <p>
+                <?= htmlspecialchars($tagline) ?>
+            </p>
 
-    <div>
-        <img
-            src="assets/images/hero-kursus.jpg"
-            alt="Pembelajaran kursus"
+            <a
+                href="#katalog"
+                class="cta"
+            >
+                Lihat Katalog Kursus
+            </a>
+
+        </div>
+
+
+        <div>
+
+            <img
+                src="assets/images/hero-kursus.jpg"
+                alt="Pembelajaran kursus"
+            >
+
+        </div>
+
+    </section>
+
+
+    <!-- VIDEO -->
+    <section id="video">
+
+        <h2>
+            Video Perkenalan KursusKu
+        </h2>
+
+        <video
+            controls
+            width="100%"
         >
-    </div>
 
-</section>
+            <source
+                src="assets/video/intro-kursus.mp4"
+                type="video/mp4"
+            >
 
-<section id="video">
+            Browser kamu tidak mendukung video.
 
-    <h2>Video Perkenalan KursusKu</h2>
+        </video>
 
-    <video controls width="100%">
-        <source src="assets/video/intro-kursus.mp4" type="video/mp4">
-        Browser kamu tidak mendukung video.
-    </video>
-
-</section>
+    </section>
 
 
     <!-- KEUNGGULAN -->
     <section id="keunggulan">
 
-        <h2>Mengapa Memilih KursusKu?</h2>
+        <h2>
+            Mengapa Memilih KursusKu?
+        </h2>
+
 
         <article>
-            <h3>Materi Terarah</h3>
+
+            <h3>
+                Materi Terarah
+            </h3>
+
             <p>
                 Materi pembelajaran disusun secara terstruktur
                 dan mudah diikuti.
             </p>
+
         </article>
 
+
         <article>
-            <h3>Belajar dengan Proyek</h3>
+
+            <h3>
+                Belajar dengan Proyek
+            </h3>
+
             <p>
                 Peserta belajar melalui latihan dan proyek
                 yang dapat dipraktikkan.
             </p>
+
         </article>
 
+
         <article>
-            <h3>Pendampingan Praktik</h3>
+
+            <h3>
+                Pendampingan Praktik
+            </h3>
+
             <p>
                 Peserta mendapatkan arahan untuk membantu
                 memahami praktik pembelajaran.
             </p>
+
         </article>
 
     </section>
 
 
-    <!-- KATALOG KURSUS -->
+    <!-- KATALOG -->
     <section id="katalog">
 
-        <h2>Katalog Kursus</h2>
+        <h2>
+            Katalog Kursus
+        </h2>
+
 
         <table>
 
             <thead>
+
                 <tr>
+
                     <th>Kode</th>
                     <th>Kursus</th>
                     <th>Biaya</th>
@@ -166,14 +248,18 @@ $courses = [
                     <th>Sisa Kursi</th>
                     <th>Status</th>
                     <th>Tanggal Mulai</th>
+
                 </tr>
+
             </thead>
+
 
             <tbody>
 
                 <?php foreach ($courses as $course): ?>
 
                     <tr>
+
                         <td>
                             <?= htmlspecialchars($course['code']) ?>
                         </td>
@@ -211,6 +297,7 @@ $courses = [
                         <td>
                             <?= formatTanggal($course['start_date']) ?>
                         </td>
+
                     </tr>
 
                 <?php endforeach; ?>
@@ -221,40 +308,85 @@ $courses = [
 
     </section>
 
-<section id="pendaftaran">
 
-    <h2>Langkah Pendaftaran</h2>
+    <!-- PENDAFTARAN -->
+    <section id="pendaftaran">
 
-    <ol>
-        <li>Pilih kursus yang ingin diikuti.</li>
-        <li>Periksa biaya, kuota, dan tanggal mulai kursus.</li>
-        <li>Lakukan pendaftaran sesuai informasi yang tersedia.</li>
-        <li>Tunggu konfirmasi dari KursusKu.</li>
-    </ol>
+        <h2>
+            Langkah Pendaftaran
+        </h2>
 
-</section>
-<!-- KONTAK -->
-<section id="kontak">
+        <ol>
 
-    <h2>Kontak</h2>
+            <li>
+                Pilih kursus yang ingin diikuti.
+            </li>
 
-    <p>Email: info@kursusku.test</p>
-    <p>Telepon: 0812-3456-7890</p>
+            <li>
+                Periksa biaya, kuota, dan tanggal mulai kursus.
+            </li>
 
-    <p>
-        <a href="server-time.php">
-            Lihat waktu server
-        </a>
-    </p>
+            <li>
+                Lakukan pendaftaran melalui formulir.
+            </li>
 
-</section>
+            <li>
+                Tunggu konfirmasi dari KursusKu.
+            </li>
 
-<footer>
-    <p>&copy; <?= $year ?> KursusKu</p>
-</footer>
-    <p>Tahun: <?= $year ?></p>
+        </ol>
+
+
+        <p>
+
+            <a
+                href="registration.php"
+                class="cta"
+            >
+                Daftar Sekarang
+            </a>
+
+        </p>
+
+    </section>
+
+
+    <!-- KONTAK -->
+    <section id="kontak">
+
+        <h2>
+            Kontak
+        </h2>
+
+        <p>
+            Email: info@kursusku.test
+        </p>
+
+        <p>
+            Telepon: 0812-3456-7890
+        </p>
+
+        <p>
+
+            <a href="server-time.php">
+                Lihat waktu server
+            </a>
+
+        </p>
+
+    </section>
 
 </main>
+
+
+<footer>
+
+    <p>
+        &copy; <?= $year ?> KursusKu
+    </p>
+
+</footer>
+
 
 </body>
 </html>

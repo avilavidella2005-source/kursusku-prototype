@@ -1,0 +1,42 @@
+LOCAL VS HOSTING - KURSUSKU
+Pertemuan 5
+
+Aspek              Local Development              Hosting / Production
+
+URL                localhost/kursusku-prototype  Domain/subdomain publik
+
+Lokasi file        Laptop mahasiswa              Server hosting
+
+Database           MySQL lokal / Laragon         Database server hosting
+
+Environment        Development                   Production
+
+HTTPS/SSL          Tidak selalu tersedia          Seharusnya HTTPS aktif
+
+Debug              Boleh membantu proses belajar  Jangan menampilkan detail error sensitif
+
+Secret             Disimpan lokal dan tidak       Disimpan aman sebagai
+                   dibagikan                      konfigurasi server
+
+Document root      Folder proyek di Laragon       Folder web yang ditentukan provider
+
+
+CHECKLIST SEBELUM HOSTING
+
+[✓] Semua path file menggunakan path relatif dan tidak bergantung
+    pada lokasi laptop.
+
+[✓] Tidak ada password atau API key yang ditulis di source code.
+
+[✓] Link internal dan aset sudah diuji.
+
+[✓] Halaman mobile sudah diuji.
+
+[✓] HTTPS dipahami sebagai perlindungan data saat transit.
+
+[✓] Untuk latihan digunakan data fiktif dan email @example.test.
+
+Catatan:
+Hosting adalah lingkungan server tempat aplikasi dapat diakses
+dari internet. Upload ke hosting nyata dilakukan jika kelas
+memiliki akun atau server yang disediakan.

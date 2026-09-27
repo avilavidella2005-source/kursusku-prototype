@@ -1,0 +1,640 @@
+/* ==================================================
+   KURSU SKU - STYLE UTAMA
+   ================================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4faf9;
+    color: #263238;
+    line-height: 1.6;
+}
+
+
+/* ==================================================
+   NAVBAR
+   ================================================== */
+
+.site-header {
+    background: #00695c;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar {
+    padding: 14px 0;
+}
+
+.navbar .container {
+    width: 90%;
+    max-width: 1100px;
+    margin: auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+
+    padding: 10px 16px;
+    border-radius: 8px;
+
+    transition: 0.3s;
+}
+
+.navbar a:hover {
+    background: #00897b;
+    transform: translateY(-2px);
+}
+
+
+/* ==================================================
+   HERO
+   ================================================== */
+
+.hero {
+    width: 90%;
+    max-width: 1100px;
+
+    margin: 45px auto;
+
+    padding: 45px;
+
+    background: white;
+
+    border-radius: 22px;
+
+    box-shadow: 0 10px 30px rgba(0, 77, 64, 0.10);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 45px;
+}
+
+.hero > div {
+    width: 50%;
+}
+
+.hero h1 {
+    font-size: 50px;
+    color: #00695c;
+
+    margin-bottom: 12px;
+}
+
+.hero p {
+    font-size: 18px;
+    color: #546e7a;
+
+    margin-bottom: 28px;
+
+    max-width: 500px;
+}
+
+.hero img {
+    width: 100%;
+    height: 330px;
+
+    object-fit: cover;
+
+    border-radius: 18px;
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+
+/* ==================================================
+   BUTTON
+   ================================================== */
+
+.cta {
+    display: inline-block;
+
+    background: #00897b;
+
+    color: white;
+
+    padding: 13px 24px;
+
+    border-radius: 9px;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    box-shadow: 0 5px 12px rgba(0, 137, 123, 0.25);
+
+    transition: 0.3s;
+}
+
+.cta:hover {
+    background: #00695c;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 7px 16px rgba(0, 105, 92, 0.30);
+}
+
+
+/* ==================================================
+   SECTION UMUM
+   ================================================== */
+
+section {
+    width: 90%;
+    max-width: 1100px;
+
+    margin: 35px auto;
+
+    padding: 40px;
+
+    background: white;
+
+    border-radius: 18px;
+
+    box-shadow: 0 6px 22px rgba(0, 77, 64, 0.07);
+}
+
+section h2 {
+    text-align: center;
+
+    color: #00695c;
+
+    margin-bottom: 28px;
+
+    font-size: 28px;
+}
+
+
+/* ==================================================
+   VIDEO
+   ================================================== */
+
+#video {
+    background: #ffffff;
+}
+
+#video video {
+    display: block;
+
+    width: 100%;
+
+    max-width: 900px;
+
+    margin: auto;
+
+    border-radius: 15px;
+
+    box-shadow: 0 7px 20px rgba(0, 0, 0, 0.12);
+}
+
+
+/* ==================================================
+   KEUNGGULAN
+   ================================================== */
+
+#keunggulan {
+    text-align: center;
+}
+
+#keunggulan article {
+    display: inline-block;
+
+    width: 30%;
+
+    vertical-align: top;
+
+    margin: 1%;
+
+    padding: 28px 22px;
+
+    background: #f1faf8;
+
+    border: 1px solid #c8e6e1;
+
+    border-radius: 15px;
+
+    min-height: 170px;
+
+    transition: 0.3s;
+}
+
+#keunggulan article:hover {
+    transform: translateY(-6px);
+
+    box-shadow: 0 10px 22px rgba(0, 105, 92, 0.12);
+
+    border-color: #80cbc4;
+}
+
+#keunggulan article h3 {
+    color: #00796b;
+
+    margin-bottom: 12px;
+
+    font-size: 19px;
+}
+
+#keunggulan article p {
+    color: #546e7a;
+
+    font-size: 15px;
+}
+
+
+/* ==================================================
+   KATALOG
+   ================================================== */
+
+#katalog {
+    overflow-x: auto;
+}
+
+#katalog table {
+    width: 100%;
+
+    border-collapse: separate;
+    border-spacing: 0;
+
+    margin-top: 20px;
+
+    background: white;
+
+    overflow: hidden;
+
+    border-radius: 12px;
+
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+}
+
+#katalog th {
+    background: #00695c;
+
+    color: white;
+
+    padding: 15px 12px;
+
+    text-align: center;
+
+    font-size: 14px;
+}
+
+#katalog td {
+    padding: 14px 12px;
+
+    text-align: center;
+
+    border-bottom: 1px solid #e0eeee;
+
+    font-size: 14px;
+}
+
+#katalog tbody tr:nth-child(even) {
+    background: #f5faf9;
+}
+
+#katalog tbody tr:hover {
+    background: #e0f2f1;
+}
+
+#katalog tbody tr:last-child td {
+    border-bottom: none;
+}
+
+#katalog td:nth-child(2) {
+    text-align: left;
+
+    font-weight: bold;
+
+    color: #00695c;
+}
+
+
+/* ==================================================
+   PENDAFTARAN
+   ================================================== */
+
+#pendaftaran {
+    background: linear-gradient(
+        135deg,
+        #e0f2f1,
+        #f4faf9
+    );
+
+    text-align: center;
+}
+
+#pendaftaran h2 {
+    color: #00695c;
+}
+
+#pendaftaran ol {
+    max-width: 700px;
+
+    margin: 0 auto 25px;
+
+    padding-left: 30px;
+
+    text-align: left;
+}
+
+#pendaftaran li {
+    margin-bottom: 13px;
+
+    padding-left: 5px;
+
+    color: #455a64;
+}
+
+#pendaftaran li::marker {
+    color: #00897b;
+
+    font-weight: bold;
+}
+
+
+/* ==================================================
+   KONTAK
+   ================================================== */
+
+#kontak {
+    text-align: center;
+}
+
+#kontak p {
+    margin: 10px;
+}
+
+#kontak a {
+    color: #00796b;
+
+    font-weight: bold;
+
+    text-decoration: none;
+}
+
+#kontak a:hover {
+    color: #004d40;
+
+    text-decoration: underline;
+}
+
+
+/* ==================================================
+   FOOTER
+   ================================================== */
+
+footer {
+    margin-top: 50px;
+
+    padding: 28px;
+
+    background: #004d40;
+
+    color: white;
+
+    text-align: center;
+}
+
+footer p {
+    margin: 0;
+}
+
+
+/* ==================================================
+   RESPONSIVE / HP
+   ================================================== */
+
+@media (max-width: 768px) {
+
+    .navbar .container {
+        flex-wrap: wrap;
+
+        gap: 4px;
+    }
+
+    .navbar a {
+        padding: 8px 10px;
+
+        font-size: 13px;
+    }
+
+
+    /* HERO */
+
+    .hero {
+        flex-direction: column;
+
+        padding: 30px 20px;
+
+        text-align: center;
+
+        gap: 30px;
+    }
+
+    .hero > div {
+        width: 100%;
+    }
+
+    .hero h1 {
+        font-size: 38px;
+    }
+
+    .hero p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero img {
+        height: 250px;
+    }
+
+
+    /* SECTION */
+
+    section {
+        width: 94%;
+
+        padding: 28px 18px;
+    }
+
+    section h2 {
+        font-size: 24px;
+    }
+
+
+    /* KEUNGGULAN */
+
+    #keunggulan article {
+        width: 100%;
+
+        margin: 8px 0;
+
+        min-height: auto;
+    }
+
+
+    /* KATALOG */
+
+    #katalog table {
+        min-width: 900px;
+    }
+
+
+    /* FOOTER */
+
+    footer {
+        padding: 22px;
+    }
+}
+
+/* ================= FORM PENDAFTARAN ================= */
+
+.form-card {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 35px;
+    background: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.form-group {
+    margin-bottom: 22px;
+}
+
+.form-group label,
+.form-group legend {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #173b67;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #ffffff;
+    transition: 0.2s;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group input[type="tel"]:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #173b67;
+    box-shadow: 0 0 0 3px rgba(23, 59, 103, 0.12);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+fieldset.form-group {
+    border: 1px solid #dbe3ec;
+    padding: 18px;
+    border-radius: 12px;
+}
+
+fieldset.form-group legend {
+    padding: 0 8px;
+}
+
+.choice {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 8px;
+    margin-right: 25px;
+    margin-bottom: 8px;
+    font-weight: normal !important;
+    color: #333 !important;
+}
+
+.choice input[type="radio"],
+.choice input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+}
+
+.help {
+    display: block;
+    margin-top: 6px;
+    color: #64748b;
+    font-size: 13px;
+}
+
+.form-actions {
+    margin-top: 25px;
+}
+
+.btn-primary {
+    border: none;
+    padding: 13px 24px;
+    background: #173b67;
+    color: white;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-primary:hover {
+    background: #24588f;
+    transform: translateY(-1px);
+}
+
+
+/* ================= RESPONSIVE FORM ================= */
+
+@media (max-width: 600px) {
+
+    .form-card {
+        margin: 20px 15px;
+        padding: 22px;
+        border-radius: 14px;
+    }
+
+    .form-group {
+        margin-bottom: 18px;
+    }
+
+    .choice {
+        display: flex !important;
+        margin-right: 0;
+    }
+
+    .btn-primary {
+        width: 100%;
+    }
+
+}
