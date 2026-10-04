@@ -1,0 +1,30 @@
+TEST MATRIX - KURSUSKU WEEK 06
+
+No | Fitur yang Diuji              | Input/Data                         | Hasil yang Diharapkan                              | Status
+---|--------------------------------|------------------------------------|----------------------------------------------------|--------
+1  | Form lengkap                  | Semua field diisi                  | Data dapat dikirim dan diproses                   | PASS
+2  | Nama lengkap                  | avila vidella                      | Nama diterima dan tampil pada ringkasan            | PASS
+3  | Email                         | avilavidella@gmail.com                  | Email diterima dengan format yang benar            | PASS
+4  | Nomor telepon                 | 081234567890                       | Nomor telepon diterima dan tampil                  | PASS
+5  | Program studi                 | PTIK                               | Program studi tampil pada hasil pendaftaran        | PASS
+6  | Pilih kursus                  | PHP Dasar                          | Kursus yang dipilih tampil pada ringkasan          | PASS
+7  | Tipe peserta                  | Mahasiswa                          | Data mahasiswa diproses dengan benar               | PASS
+8  | Tipe peserta                  | Guru                               | Data guru diproses dengan benar                    | PASS
+9  | Tipe peserta                  | Umum                               | Data umum diproses dengan benar                    | PASS
+10 | Checkbox minat                | Frontend + Backend + Database      | Semua minat yang dipilih tampil                    | PASS
+11 | Checkbox kosong               | Tidak memilih minat                | Form tetap dapat diproses                          | PASS
+12 | Metode belajar                | Online                             | Metode Online tampil pada ringkasan                | PASS
+13 | Jumlah paket                  | 1 paket                            | Jumlah paket tampil dengan benar                   | PASS
+14 | Catatan tambahan              | Diisi                              | Catatan tampil pada hasil pendaftaran              | PASS
+15 | History Dummy                 | Membuka history-dummy.php          | Data riwayat pendaftaran tampil dalam tabel        | PASS
+16 | Navigasi                      | Klik Beranda                       | Masuk ke halaman index.php                         | PASS
+17 | Navigasi                      | Klik Katalog                       | Menuju bagian katalog                              | PASS
+18 | Navigasi                      | Klik Daftar Kursus                 | Membuka halaman registration.php                   | PASS
+19 | Validasi form                 | Field wajib dikosongkan            | Browser meminta field untuk diisi                  | PASS
+20 | Tampilan                      | Membuka pada browser               | Navbar, form, tabel dan tombol tampil dengan rapi  | PASS
+
+
+KESIMPULAN:
+Seluruh pengujian pada fitur Week 06 berhasil dilakukan.
+Semua fitur utama berjalan sesuai dengan hasil yang diharapkan.
+Status pengujian: PASS.

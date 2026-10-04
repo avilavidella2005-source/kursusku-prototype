@@ -1,5 +1,16 @@
 <?php
+
 $siteName = 'KursusKu';
+
+$courses = [
+    'Web Dasar',
+    'PHP Dasar',
+    'PHP Lanjutan',
+    'Laravel Fundamental',
+    'MySQL Dasar',
+    'UI Web Dasar'
+];
+
 ?>
 
 <!DOCTYPE html>
@@ -20,23 +31,19 @@ $siteName = 'KursusKu';
 
     <div class="container nav-wrap">
 
-        <a class="brand" href="index.php">
+        <!-- Logo -->
+        <a href="index.php" class="brand">
             <?= htmlspecialchars($siteName) ?>
         </a>
 
+        <!-- Navigasi -->
         <nav aria-label="Navigasi utama">
 
-            <a href="index.php">
-                Beranda
-            </a>
+            <a href="index.php">Beranda</a>
 
-            <a href="index.php#katalog">
-                Katalog
-            </a>
+            <a href="index.php#katalog">Katalog</a>
 
-            <a href="registration.php">
-                Daftar Kursus
-            </a>
+            <a href="registration.php">Daftar Kursus</a>
 
         </nav>
 
@@ -47,6 +54,7 @@ $siteName = 'KursusKu';
 
 <main>
 
+    <!-- Judul Halaman -->
     <section class="page-intro">
 
         <div class="container">
@@ -69,16 +77,18 @@ $siteName = 'KursusKu';
     </section>
 
 
+    <!-- Form Pendaftaran -->
     <section class="container">
 
         <div class="form-card">
 
             <form action="process-registration.php" method="POST">
+
                 <!-- Hidden -->
                 <input
                     type="hidden"
                     name="source"
-                    value="week-05"
+                    value="week-06"
                 >
 
 
@@ -86,7 +96,7 @@ $siteName = 'KursusKu';
                 <div class="form-group">
 
                     <label for="name">
-                        Nama Lengkap
+                        Nama lengkap
                     </label>
 
                     <input
@@ -121,36 +131,16 @@ $siteName = 'KursusKu';
                 </div>
 
 
-                <!-- Nomor HP -->
-                <div class="form-group">
-
-                    <label for="phone">
-                        Nomor HP
-                    </label>
-
-                    <input
-                        id="phone"
-                        name="phone"
-                        type="tel"
-                        maxlength="15"
-                        autocomplete="tel"
-                        placeholder="Contoh: 081234567890"
-                        required
-                    >
-
-                </div>
-
-
                 <!-- Program Studi -->
                 <div class="form-group">
 
-                    <label for="study_program">
+                    <label for="studyProgram">
                         Program Studi
                     </label>
 
                     <input
-                        id="study_program"
-                        name="study_program"
+                        id="studyProgram"
+                        name="studyProgram"
                         type="text"
                         maxlength="100"
                         placeholder="Contoh: PTIK"
@@ -158,13 +148,31 @@ $siteName = 'KursusKu';
                     >
 
                 </div>
+                <!-- Nomor Telepon -->
+<div class="form-group">
+
+    <label for="phone">
+        Nomor Telepon
+    </label>
+
+    <input
+        id="phone"
+        name="phone"
+        type="tel"
+        maxlength="15"
+        autocomplete="tel"
+        placeholder="Contoh: 081234567890"
+        required
+    >
+
+</div>
 
 
-                <!-- Pilihan Kursus -->
+                <!-- Pilih Kursus -->
                 <div class="form-group">
 
                     <label for="course">
-                        Kursus yang Dipilih
+                        Pilih kursus
                     </label>
 
                     <select
@@ -177,48 +185,32 @@ $siteName = 'KursusKu';
                             -- Pilih kursus --
                         </option>
 
-                        <option value="web-dasar">
-                            Web Dasar
-                        </option>
+                        <?php foreach ($courses as $course): ?>
 
-                        <option value="php-dasar">
-                            PHP Dasar
-                        </option>
+                            <option value="<?= htmlspecialchars($course) ?>">
+                                <?= htmlspecialchars($course) ?>
+                            </option>
 
-                        <option value="php-lanjutan">
-                            PHP Lanjutan
-                        </option>
-
-                        <option value="laravel-fundamental">
-                            Laravel Fundamental
-                        </option>
-
-                        <option value="mysql-dasar">
-                            MySQL Dasar
-                        </option>
-
-                        <option value="ui-web-dasar">
-                            UI Web Dasar
-                        </option>
+                        <?php endforeach; ?>
 
                     </select>
 
                 </div>
 
 
-                <!-- Jenis Peserta -->
+                <!-- Tipe Peserta -->
                 <fieldset class="form-group">
 
                     <legend>
-                        Jenis Peserta
+                        Tipe peserta
                     </legend>
 
                     <label class="choice">
 
                         <input
                             type="radio"
-                            name="participant_type"
-                            value="mahasiswa"
+                            name="participantType"
+                            value="Mahasiswa"
                             required
                         >
 
@@ -231,8 +223,21 @@ $siteName = 'KursusKu';
 
                         <input
                             type="radio"
-                            name="participant_type"
-                            value="umum"
+                            name="participantType"
+                            value="Guru"
+                        >
+
+                        Guru
+
+                    </label>
+
+
+                    <label class="choice">
+
+                        <input
+                            type="radio"
+                            name="participantType"
+                            value="Umum"
                         >
 
                         Umum
@@ -242,22 +247,22 @@ $siteName = 'KursusKu';
                 </fieldset>
 
 
-                <!-- Minat Tambahan -->
+                <!-- Minat Belajar -->
                 <fieldset class="form-group">
 
                     <legend>
-                        Minat Tambahan
+                        Minat belajar
                     </legend>
 
                     <label class="choice">
 
                         <input
                             type="checkbox"
-                            name="interests[]"
-                            value="ui-ux"
+                            name="interest[]"
+                            value="Frontend"
                         >
 
-                        UI/UX
+                        Frontend
 
                     </label>
 
@@ -266,8 +271,21 @@ $siteName = 'KursusKu';
 
                         <input
                             type="checkbox"
-                            name="interests[]"
-                            value="database"
+                            name="interest[]"
+                            value="Backend"
+                        >
+
+                        Backend
+
+                    </label>
+
+
+                    <label class="choice">
+
+                        <input
+                            type="checkbox"
+                            name="interest[]"
+                            value="Database"
                         >
 
                         Database
@@ -279,22 +297,86 @@ $siteName = 'KursusKu';
 
                         <input
                             type="checkbox"
-                            name="interests[]"
-                            value="backend"
+                            name="interest[]"
+                            value="UI/UX"
                         >
 
-                        Backend
+                        UI/UX
 
                     </label>
 
                 </fieldset>
 
 
-                <!-- Catatan -->
+                <!-- Metode Belajar -->
+                <div class="form-group">
+
+                    <label for="learningMethod">
+                        Metode belajar
+                    </label>
+
+                    <select
+                        id="learningMethod"
+                        name="learningMethod"
+                        required
+                    >
+
+                        <option value="">
+                            -- Pilih metode --
+                        </option>
+
+                        <option value="Online">
+                            Online
+                        </option>
+
+                        <option value="Offline">
+                            Offline
+                        </option>
+
+                        <option value="Hybrid">
+                            Hybrid
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Jumlah Paket -->
+                <div class="form-group">
+
+                    <label for="package">
+                        Jumlah paket
+                    </label>
+
+                    <select
+                        id="package"
+                        name="package"
+                        required
+                    >
+
+                        <option value="1">
+                            1 paket
+                        </option>
+
+                        <option value="2">
+                            2 paket
+                        </option>
+
+                        <option value="3">
+                            3 paket
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Catatan Tambahan -->
                 <div class="form-group">
 
                     <label for="note">
-                        Catatan
+                        Catatan tambahan
                     </label>
 
                     <textarea
@@ -302,7 +384,7 @@ $siteName = 'KursusKu';
                         name="note"
                         rows="5"
                         maxlength="300"
-                        placeholder="Tuliskan kebutuhan belajar Anda (opsional)"
+                        placeholder="Tuliskan kebutuhan belajar Anda"
                     ></textarea>
 
                     <small class="help">
@@ -312,15 +394,31 @@ $siteName = 'KursusKu';
                 </div>
 
 
-                <!-- Tombol -->
+                <!-- Tombol Week 06 -->
                 <div class="form-actions">
 
                     <button
                         class="btn-primary"
                         type="submit"
                     >
-                        Kirim Pendaftaran
+                        Proses Pendaftaran
                     </button>
+
+
+                    <a
+                        href="history-dummy.php"
+                        class="btn-link"
+                    >
+                        History Dummy
+                    </a>
+
+
+                    <a
+                        href="loop-lab.php"
+                        class="btn-link"
+                    >
+                        Loop Lab
+                    </a>
 
                 </div>
 
@@ -333,7 +431,8 @@ $siteName = 'KursusKu';
 </main>
 
 
-<footer>
+<!-- Footer -->
+<footer class="footer">
 
     <div class="container">
 

@@ -1,11 +1,9 @@
-/* ==================================================
-   KURSU SKU - STYLE UTAMA
-   ================================================== */
+/* =========================
+   RESET / DASAR
+========================= */
 
 * {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
 }
 
 html {
@@ -13,628 +11,629 @@ html {
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f4faf9;
-    color: #263238;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #16332c;
+    background: #f2f8f7;
     line-height: 1.6;
 }
 
+.container {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
 
-/* ==================================================
+
+/* =========================
    NAVBAR
-   ================================================== */
+========================= */
 
 .site-header {
     background: #00695c;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-.navbar {
-    padding: 14px 0;
-}
-
-.navbar .container {
-    width: 90%;
-    max-width: 1100px;
-    margin: auto;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-}
-
-.navbar a {
     color: white;
-    text-decoration: none;
-    font-weight: bold;
-
-    padding: 10px 16px;
-    border-radius: 8px;
-
-    transition: 0.3s;
+    width: 100%;
+    border: 0;
 }
 
-.navbar a:hover {
-    background: #00897b;
-    transform: translateY(-2px);
-}
-
-
-/* ==================================================
-   HERO
-   ================================================== */
-
-.hero {
-    width: 90%;
-    max-width: 1100px;
-
-    margin: 45px auto;
-
-    padding: 45px;
-
-    background: white;
-
-    border-radius: 22px;
-
-    box-shadow: 0 10px 30px rgba(0, 77, 64, 0.10);
-
+/* Navbar registration.php */
+.nav-wrap {
+    min-height: 70px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    gap: 45px;
+    gap: 30px;
 }
 
-.hero > div {
-    width: 50%;
+/* Logo KursusKu */
+.brand {
+    display: inline-block;
+    color: #ffffff !important;
+    text-decoration: none !important;
+    font-size: 26px;
+    font-weight: 800;
+    white-space: nowrap;
+    margin: 0;
+}
+
+.brand:hover {
+    color: #d7f3ef !important;
+    text-decoration: none !important;
+}
+
+/* Menu */
+.nav-wrap nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 28px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-wrap nav a {
+    display: inline-block;
+    color: #ffffff !important;
+    text-decoration: none !important;
+    font-size: 17px;
+    font-weight: 700;
+    white-space: nowrap;
+    padding: 6px 0;
+}
+
+.nav-wrap nav a:hover {
+    color: #d7f3ef !important;
+    text-decoration: none !important;
+}
+
+
+/* =========================
+   NAVBAR INDEX.PHP
+========================= */
+
+/* Untuk struktur navbar lama */
+.site-header .navbar {
+    background: #00695c;
+    width: 100%;
+    padding: 0;
+}
+
+.site-header .navbar .container {
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+/* Jika index.php punya brand */
+.site-header .navbar .brand {
+    color: #ffffff !important;
+    text-decoration: none !important;
+    font-size: 26px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+/* Hapus cara lama dengan pseudo-element */
+.site-header .navbar .container::before {
+    content: none;
+}
+
+/* Jika menu langsung berupa link */
+.site-header .navbar nav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.site-header .navbar nav a,
+.site-header .navbar a {
+    color: #ffffff !important;
+    text-decoration: none !important;
+    font-size: 17px;
+    font-weight: 700;
+    white-space: nowrap;
+    padding: 6px 0;
+}
+
+.site-header .navbar nav a:hover,
+.site-header .navbar a:hover {
+    color: #d7f3ef !important;
+    text-decoration: none !important;
+}
+
+
+/* Jika index.php langsung memakai .container + a */
+.site-header > .container {
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 28px;
+}
+
+.site-header > .container > a {
+    color: #ffffff !important;
+    text-decoration: none !important;
+    font-size: 17px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    max-width: 1100px;
+    margin: 52px auto;
+    padding: 55px;
+    background: white;
+    border-radius: 28px;
+    box-shadow: 0 12px 35px rgba(0, 105, 92, 0.08);
+}
+
+.hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
 }
 
 .hero h1 {
-    font-size: 50px;
+    margin: 0 0 20px;
     color: #00695c;
-
-    margin-bottom: 12px;
+    font-size: 60px;
+    line-height: 1.1;
 }
 
 .hero p {
-    font-size: 18px;
-    color: #546e7a;
-
-    margin-bottom: 28px;
-
-    max-width: 500px;
+    margin: 0 0 25px;
+    color: #42605a;
+    font-size: 20px;
 }
 
-.hero img {
+.hero-image {
     width: 100%;
-    height: 330px;
-
-    object-fit: cover;
-
-    border-radius: 18px;
-
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-}
-
-
-/* ==================================================
-   BUTTON
-   ================================================== */
-
-.cta {
-    display: inline-block;
-
-    background: #00897b;
-
-    color: white;
-
-    padding: 13px 24px;
-
-    border-radius: 9px;
-
-    text-decoration: none;
-
-    font-weight: bold;
-
-    box-shadow: 0 5px 12px rgba(0, 137, 123, 0.25);
-
-    transition: 0.3s;
-}
-
-.cta:hover {
-    background: #00695c;
-
-    transform: translateY(-2px);
-
-    box-shadow: 0 7px 16px rgba(0, 105, 92, 0.30);
-}
-
-
-/* ==================================================
-   SECTION UMUM
-   ================================================== */
-
-section {
-    width: 90%;
-    max-width: 1100px;
-
-    margin: 35px auto;
-
-    padding: 40px;
-
-    background: white;
-
-    border-radius: 18px;
-
-    box-shadow: 0 6px 22px rgba(0, 77, 64, 0.07);
-}
-
-section h2 {
-    text-align: center;
-
-    color: #00695c;
-
-    margin-bottom: 28px;
-
-    font-size: 28px;
-}
-
-
-/* ==================================================
-   VIDEO
-   ================================================== */
-
-#video {
-    background: #ffffff;
-}
-
-#video video {
     display: block;
-
-    width: 100%;
-
-    max-width: 900px;
-
-    margin: auto;
-
-    border-radius: 15px;
-
-    box-shadow: 0 7px 20px rgba(0, 0, 0, 0.12);
+    border-radius: 20px;
+    object-fit: cover;
 }
 
 
-/* ==================================================
-   KEUNGGULAN
-   ================================================== */
+/* =========================
+   BUTTON
+========================= */
 
-#keunggulan {
-    text-align: center;
-}
-
-#keunggulan article {
+.button {
     display: inline-block;
-
-    width: 30%;
-
-    vertical-align: top;
-
-    margin: 1%;
-
-    padding: 28px 22px;
-
-    background: #f1faf8;
-
-    border: 1px solid #c8e6e1;
-
-    border-radius: 15px;
-
-    min-height: 170px;
-
-    transition: 0.3s;
-}
-
-#keunggulan article:hover {
-    transform: translateY(-6px);
-
-    box-shadow: 0 10px 22px rgba(0, 105, 92, 0.12);
-
-    border-color: #80cbc4;
-}
-
-#keunggulan article h3 {
-    color: #00796b;
-
-    margin-bottom: 12px;
-
-    font-size: 19px;
-}
-
-#keunggulan article p {
-    color: #546e7a;
-
-    font-size: 15px;
-}
-
-
-/* ==================================================
-   KATALOG
-   ================================================== */
-
-#katalog {
-    overflow-x: auto;
-}
-
-#katalog table {
-    width: 100%;
-
-    border-collapse: separate;
-    border-spacing: 0;
-
-    margin-top: 20px;
-
-    background: white;
-
-    overflow: hidden;
-
-    border-radius: 12px;
-
-    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
-}
-
-#katalog th {
-    background: #00695c;
-
+    background: #009688;
     color: white;
-
-    padding: 15px 12px;
-
-    text-align: center;
-
-    font-size: 14px;
+    padding: 15px 28px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 18px;
+    margin-top: 10px;
+    box-shadow: 0 6px 14px rgba(0, 150, 136, 0.20);
 }
 
-#katalog td {
-    padding: 14px 12px;
-
-    text-align: center;
-
-    border-bottom: 1px solid #e0eeee;
-
-    font-size: 14px;
-}
-
-#katalog tbody tr:nth-child(even) {
-    background: #f5faf9;
-}
-
-#katalog tbody tr:hover {
-    background: #e0f2f1;
-}
-
-#katalog tbody tr:last-child td {
-    border-bottom: none;
-}
-
-#katalog td:nth-child(2) {
-    text-align: left;
-
-    font-weight: bold;
-
-    color: #00695c;
-}
-
-
-/* ==================================================
-   PENDAFTARAN
-   ================================================== */
-
-#pendaftaran {
-    background: linear-gradient(
-        135deg,
-        #e0f2f1,
-        #f4faf9
-    );
-
-    text-align: center;
-}
-
-#pendaftaran h2 {
-    color: #00695c;
-}
-
-#pendaftaran ol {
-    max-width: 700px;
-
-    margin: 0 auto 25px;
-
-    padding-left: 30px;
-
-    text-align: left;
-}
-
-#pendaftaran li {
-    margin-bottom: 13px;
-
-    padding-left: 5px;
-
-    color: #455a64;
-}
-
-#pendaftaran li::marker {
-    color: #00897b;
-
-    font-weight: bold;
-}
-
-
-/* ==================================================
-   KONTAK
-   ================================================== */
-
-#kontak {
-    text-align: center;
-}
-
-#kontak p {
-    margin: 10px;
-}
-
-#kontak a {
-    color: #00796b;
-
-    font-weight: bold;
-
+.button:hover {
+    background: #00796b;
+    color: white;
     text-decoration: none;
 }
 
-#kontak a:hover {
-    color: #004d40;
 
-    text-decoration: underline;
+/* =========================
+   SECTION
+========================= */
+
+.section {
+    max-width: 1100px;
+    margin: 0 auto 52px;
+    padding: 45px 35px;
+    background: white;
+    border-radius: 24px;
+}
+
+.section-light {
+    background: white;
+}
+
+.section h2 {
+    color: #00695c;
 }
 
 
-/* ==================================================
-   FOOTER
-   ================================================== */
+/* =========================
+   VIDEO
+========================= */
 
-footer {
-    margin-top: 50px;
-
-    padding: 28px;
-
-    background: #004d40;
-
-    color: white;
-
+.video-placeholder {
     text-align: center;
+    margin-top: 20px;
 }
 
-footer p {
-    margin: 0;
+.video-placeholder video {
+    width: 100%;
+    max-width: 900px;
+    border-radius: 16px;
 }
 
 
-/* ==================================================
-   RESPONSIVE / HP
-   ================================================== */
+/* =========================
+   COURSE
+========================= */
 
-@media (max-width: 768px) {
-
-    .navbar .container {
-        flex-wrap: wrap;
-
-        gap: 4px;
-    }
-
-    .navbar a {
-        padding: 8px 10px;
-
-        font-size: 13px;
-    }
-
-
-    /* HERO */
-
-    .hero {
-        flex-direction: column;
-
-        padding: 30px 20px;
-
-        text-align: center;
-
-        gap: 30px;
-    }
-
-    .hero > div {
-        width: 100%;
-    }
-
-    .hero h1 {
-        font-size: 38px;
-    }
-
-    .hero p {
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .hero img {
-        height: 250px;
-    }
-
-
-    /* SECTION */
-
-    section {
-        width: 94%;
-
-        padding: 28px 18px;
-    }
-
-    section h2 {
-        font-size: 24px;
-    }
-
-
-    /* KEUNGGULAN */
-
-    #keunggulan article {
-        width: 100%;
-
-        margin: 8px 0;
-
-        min-height: auto;
-    }
-
-
-    /* KATALOG */
-
-    #katalog table {
-        min-width: 900px;
-    }
-
-
-    /* FOOTER */
-
-    footer {
-        padding: 22px;
-    }
+.course-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    margin-top: 25px;
 }
 
-/* ================= FORM PENDAFTARAN ================= */
+.course-card {
+    background: white;
+    border: 1px solid #dfe5e2;
+    border-radius: 15px;
+    padding: 22px;
+    box-shadow: 0 5px 15px rgba(0, 105, 92, 0.05);
+}
 
-.form-card {
-    max-width: 800px;
-    margin: 40px auto;
-    padding: 35px;
-    background: #ffffff;
-    border-radius: 18px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+.course-card h3 {
+    margin-top: 0;
+    color: #00695c;
+}
+
+
+/* =========================
+   TABEL
+========================= */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: white;
+}
+
+th,
+td {
+    border: 1px solid #dfe5e2;
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background: #00695c;
+    color: white;
+    font-weight: 700;
+}
+
+tr:nth-child(even) {
+    background: #f7fbfa;
+}
+
+
+/* =========================
+   BADGE
+========================= */
+
+.badge-available,
+.badge-full {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 12px;
+}
+
+.badge-available {
+    background: #e7f8ef;
+    color: #00695c;
+}
+
+.badge-full {
+    background: #fdeaea;
+    color: #b3261e;
+}
+
+
+/* =========================
+   PAGE PENDAFTARAN
+========================= */
+
+.page-intro {
+    max-width: 1100px;
+    margin: 45px auto 25px;
+    padding: 0 20px;
+}
+
+.eyebrow {
+    margin: 0 0 8px;
+    color: #00695c;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+}
+
+.page-intro h1 {
+    margin: 0 0 12px;
+    color: #16332c;
+    font-size: 42px;
+}
+
+.page-intro p {
+    font-size: 18px;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+.form-card,
+.summary-card {
+    max-width: 760px;
+    margin: 0 auto 40px;
+    padding: 30px;
+    background: white;
+    border: 1px solid #dfe5e2;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0, 105, 92, 0.06);
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
 }
 
 .form-group {
-    margin-bottom: 22px;
+    margin-bottom: 20px;
 }
 
-.form-group label,
-.form-group legend {
+label,
+legend {
     display: block;
+    font-weight: 700;
     margin-bottom: 8px;
-    font-weight: 600;
-    color: #173b67;
 }
 
-.form-group input[type="text"],
-.form-group input[type="email"],
-.form-group input[type="tel"],
-.form-group select,
-.form-group textarea {
+input,
+select,
+textarea,
+button {
+    font: inherit;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+select,
+textarea {
     width: 100%;
     padding: 12px 14px;
-    border: 1px solid #cbd5e1;
+    border: 1px solid #cbd4d0;
     border-radius: 10px;
-    font-size: 15px;
-    font-family: Arial, Helvetica, sans-serif;
-    background: #ffffff;
-    transition: 0.2s;
+    background: white;
+    color: #16332c;
 }
 
-.form-group input[type="text"]:focus,
-.form-group input[type="email"]:focus,
-.form-group input[type="tel"]:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: #173b67;
-    box-shadow: 0 0 0 3px rgba(23, 59, 103, 0.12);
-}
-
-.form-group textarea {
-    resize: vertical;
-    min-height: 120px;
-}
-
-fieldset.form-group {
-    border: 1px solid #dbe3ec;
-    padding: 18px;
-    border-radius: 12px;
-}
-
-fieldset.form-group legend {
-    padding: 0 8px;
+input:focus,
+select:focus,
+textarea:focus {
+    outline: 3px solid rgba(0, 105, 92, 0.15);
+    border-color: #00695c;
 }
 
 .choice {
-    display: inline-flex !important;
+    display: inline-flex;
     align-items: center;
-    gap: 8px;
-    margin-right: 25px;
+    gap: 7px;
+    margin-right: 18px;
     margin-bottom: 8px;
-    font-weight: normal !important;
-    color: #333 !important;
-}
-
-.choice input[type="radio"],
-.choice input[type="checkbox"] {
-    width: auto;
-    margin: 0;
+    font-weight: 400;
 }
 
 .help {
-    display: block;
-    margin-top: 6px;
-    color: #64748b;
-    font-size: 13px;
+    color: #66736f;
 }
+
+
+/* =========================
+   TOMBOL FORM
+========================= */
 
 .form-actions {
     margin-top: 25px;
 }
 
-.btn-primary {
-    border: none;
-    padding: 13px 24px;
-    background: #173b67;
-    color: white;
+.btn-primary,
+.btn-link {
+    display: inline-block;
+    border: 0;
     border-radius: 10px;
-    font-size: 15px;
-    font-weight: 600;
+    padding: 12px 20px;
+    background: #009688;
+    color: white !important;
+    text-decoration: none !important;
     cursor: pointer;
-    transition: 0.2s;
+    font-weight: 700;
 }
 
-.btn-primary:hover {
-    background: #24588f;
-    transform: translateY(-1px);
+.btn-primary:hover,
+.btn-link:hover {
+    background: #00796b;
+    color: white !important;
+    text-decoration: none !important;
 }
 
 
-/* ================= RESPONSIVE FORM ================= */
+/* =========================
+   ALERT
+========================= */
 
-@media (max-width: 600px) {
+.alert-success {
+    max-width: 760px;
+    margin: 30px auto 20px;
+    padding: 18px;
+    background: #e7f8ef;
+    border-left: 4px solid #80cbc4;
+    color: #145c35;
+    border-radius: 8px;
+}
 
-    .form-card {
-        margin: 20px 15px;
+
+/* =========================
+   SUMMARY
+========================= */
+
+.summary-list {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 10px 16px;
+}
+
+.summary-list dt {
+    font-weight: 700;
+}
+
+.summary-list dd {
+    margin: 0;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+    background: #00695c;
+    color: white;
+    padding: 25px 0;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.footer p {
+    margin: 0;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 800px) {
+
+    .nav-wrap {
+        min-height: auto;
+        padding-top: 18px;
+        padding-bottom: 18px;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-wrap nav {
+        gap: 15px 22px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .site-header .navbar .container {
+        min-height: auto;
+        padding-top: 18px;
+        padding-bottom: 18px;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 18px 25px;
+    }
+
+    .site-header > .container {
+        min-height: auto;
+        padding-top: 18px;
+        padding-bottom: 18px;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 18px 25px;
+    }
+
+    .hero {
+        margin: 30px 20px;
+        padding: 30px 25px;
+    }
+
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .hero h1 {
+        font-size: 42px;
+    }
+
+    .hero p {
+        font-size: 18px;
+    }
+
+    .section {
+        margin: 0 20px 30px;
+        padding: 30px 20px;
+    }
+
+    .page-intro h1 {
+        font-size: 34px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-card,
+    .summary-card {
+        margin-left: 20px;
+        margin-right: 20px;
         padding: 22px;
-        border-radius: 14px;
     }
 
-    .form-group {
-        margin-bottom: 18px;
+    .summary-list {
+        grid-template-columns: 1fr;
     }
 
-    .choice {
-        display: flex !important;
-        margin-right: 0;
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    .brand {
+        font-size: 22px;
     }
 
-    .btn-primary {
-        width: 100%;
+    .nav-wrap nav {
+        gap: 10px 16px;
     }
 
+    .nav-wrap nav a,
+    .site-header .navbar a,
+    .site-header > .container > a {
+        font-size: 15px;
+    }
+
+    .hero h1 {
+        font-size: 34px;
+    }
+
+    .hero {
+        padding: 25px 20px;
+    }
 }

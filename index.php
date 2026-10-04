@@ -73,7 +73,6 @@ $courses = [
 
     <title><?= htmlspecialchars($siteName) ?></title>
 
-    <!-- CSS berada langsung di folder project -->
     <link rel="stylesheet" href="assets/css/style.css">
 
 </head>
@@ -86,25 +85,35 @@ $courses = [
 
         <div class="container">
 
-            <a href="index.php">
-                Beranda
+            <!-- LOGO / NAMA WEBSITE -->
+            <a href="index.php" class="brand">
+                <?= htmlspecialchars($siteName) ?>
             </a>
 
-            <a href="index.php#katalog">
-                Katalog
-            </a>
+            <!-- MENU NAVIGASI -->
+            <div class="nav-menu">
 
-            <a href="registration.php">
-                Daftar Kursus
-            </a>
+                <a href="index.php">
+                    Beranda
+                </a>
 
-            <a href="index.php#keunggulan">
-                Keunggulan
-            </a>
+                <a href="index.php#katalog">
+                    Katalog
+                </a>
 
-            <a href="index.php#kontak">
-                Kontak
-            </a>
+                <a href="registration.php">
+                    Daftar
+                </a>
+
+                <a href="index.php#keunggulan">
+                    Keunggulan
+                </a>
+
+                <a href="index.php#kontak">
+                    Kontak
+                </a>
+
+            </div>
 
         </div>
 
@@ -115,7 +124,10 @@ $courses = [
 
 <main>
 
-    <!-- HERO -->
+    <!-- ==================================================
+         HERO
+         ================================================== -->
+
     <section class="hero">
 
         <div>
@@ -150,7 +162,10 @@ $courses = [
     </section>
 
 
-    <!-- VIDEO -->
+    <!-- ==================================================
+         VIDEO
+         ================================================== -->
+
     <section id="video">
 
         <h2>
@@ -174,7 +189,10 @@ $courses = [
     </section>
 
 
-    <!-- KEUNGGULAN -->
+    <!-- ==================================================
+         KEUNGGULAN
+         ================================================== -->
+
     <section id="keunggulan">
 
         <h2>
@@ -226,132 +244,131 @@ $courses = [
     </section>
 
 
-    <!-- KATALOG -->
+    <!-- ==================================================
+         KATALOG
+         ================================================== -->
+
     <section id="katalog">
 
-        <h2>
-            Katalog Kursus
-        </h2>
+        <div class="container">
+
+            <div class="section-heading">
+
+                <p class="eyebrow">
+                    Katalog Kursus
+                </p>
+
+                <h2>
+                    Pilihan Kursus KursusKu
+                </h2>
+
+                <p>
+                    Pilih kursus sesuai kebutuhan belajar
+                    dan lihat ketersediaan kursinya.
+                </p>
+
+            </div>
 
 
-        <table>
+            <div class="table-wrap">
 
-            <thead>
+                <table>
 
-                <tr>
+                    <thead>
 
-                    <th>Kode</th>
-                    <th>Kursus</th>
-                    <th>Biaya</th>
-                    <th>Kuota</th>
-                    <th>Terdaftar</th>
-                    <th>Sisa Kursi</th>
-                    <th>Status</th>
-                    <th>Tanggal Mulai</th>
+                        <tr>
 
-                </tr>
+                            <th>
+                                Kode
+                            </th>
 
-            </thead>
+                            <th>
+                                Kursus
+                            </th>
 
+                            <th>
+                                Biaya
+                            </th>
 
-            <tbody>
+                            <th>
+                                Kuota
+                            </th>
 
-                <?php foreach ($courses as $course): ?>
+                            <th>
+                                Terdaftar
+                            </th>
 
-                    <tr>
+                            <th>
+                                Sisa Kursi
+                            </th>
 
-                        <td>
-                            <?= htmlspecialchars($course['code']) ?>
-                        </td>
+                        </tr>
 
-                        <td>
-                            <?= htmlspecialchars($course['name']) ?>
-                        </td>
-
-                        <td>
-                            <?= rupiah($course['fee']) ?>
-                        </td>
-
-                        <td>
-                            <?= $course['quota'] ?>
-                        </td>
-
-                        <td>
-                            <?= $course['registered'] ?>
-                        </td>
-
-                        <td>
-                            <?= sisaKursi(
-                                $course['quota'],
-                                $course['registered']
-                            ) ?>
-                        </td>
-
-                        <td>
-                            <?= statusKursus(
-                                $course['quota'],
-                                $course['registered']
-                            ) ?>
-                        </td>
-
-                        <td>
-                            <?= formatTanggal($course['start_date']) ?>
-                        </td>
-
-                    </tr>
-
-                <?php endforeach; ?>
-
-            </tbody>
-
-        </table>
-
-    </section>
+                    </thead>
 
 
-    <!-- PENDAFTARAN -->
-    <section id="pendaftaran">
+                    <tbody>
 
-        <h2>
-            Langkah Pendaftaran
-        </h2>
+                        <?php foreach ($courses as $course): ?>
 
-        <ol>
+                            <?php
+                            $remaining =
+                                $course['quota']
+                                - $course['registered'];
+                            ?>
 
-            <li>
-                Pilih kursus yang ingin diikuti.
-            </li>
+                            <tr>
 
-            <li>
-                Periksa biaya, kuota, dan tanggal mulai kursus.
-            </li>
+                                <td>
+                                    <?= htmlspecialchars($course['code']) ?>
+                                </td>
 
-            <li>
-                Lakukan pendaftaran melalui formulir.
-            </li>
+                                <td>
+                                    <strong>
+                                        <?= htmlspecialchars($course['name']) ?>
+                                    </strong>
+                                </td>
 
-            <li>
-                Tunggu konfirmasi dari KursusKu.
-            </li>
+                                <td>
+                                    Rp <?= number_format(
+                                        $course['fee'],
+                                        0,
+                                        ',',
+                                        '.'
+                                    ) ?>
+                                </td>
 
-        </ol>
+                                <td>
+                                    <?= $course['quota'] ?>
+                                </td>
 
+                                <td>
+                                    <?= $course['registered'] ?>
+                                </td>
 
-        <p>
+                                <td>
+                                    <?= $remaining ?>
+                                </td>
 
-            <a
-                href="registration.php"
-                class="cta"
-            >
-                Daftar Sekarang
-            </a>
+                            </tr>
 
-        </p>
+                        <?php endforeach; ?>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
 
     </section>
 
 
-    <!-- KONTAK -->
+    <!-- ==================================================
+         KONTAK
+         ================================================== -->
+
     <section id="kontak">
 
         <h2>
@@ -378,6 +395,10 @@ $courses = [
 
 </main>
 
+
+<!-- ==================================================
+     FOOTER
+     ================================================== -->
 
 <footer>
 

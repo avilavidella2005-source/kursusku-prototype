@@ -5,23 +5,38 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
+function e(string $value): string
+{
+    return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+}
+
 // Ambil data dari form
 $name = trim($_POST['name'] ?? '');
 $email = trim($_POST['email'] ?? '');
 $phone = trim($_POST['phone'] ?? '');
-$studyProgram = trim($_POST['study_program'] ?? '');
+$studyProgram = trim($_POST['studyProgram'] ?? '');
 $course = trim($_POST['course'] ?? '');
-$participantType = trim($_POST['participant_type'] ?? '');
+$participantType = trim($_POST['participantType'] ?? '');
 $note = trim($_POST['note'] ?? '');
+$source = trim($_POST['source'] ?? '');
 
-// Checkbox
-$interests = $_POST['interests'] ?? [];
+$interest = $_POST['interest'] ?? [];
 
-if (!is_array($interests)) {
-    $interests = [];
+if (!is_array($interest)) {
+    $interest = [$interest];
 }
 
-// Validasi sederhana
+// Daftar kursus dan harga sesuai katalog KursusKu
+$coursePrices = [
+    'Web Dasar' => 200000,
+    'PHP Dasar' => 250000,
+    'PHP Lanjutan' => 300000,
+    'Laravel Fundamental' => 350000,
+    'MySQL Dasar' => 275000,
+    'UI Web Dasar' => 225000
+];
+
+// Validasi
 $errors = [];
 
 if ($name === '') {
@@ -37,17 +52,16 @@ if ($phone === '') {
 }
 
 if ($studyProgram === '') {
-    $errors[] = 'Program studi wajib diisi.';
+    $errors[] = 'Program Studi wajib diisi.';
 }
 
-if ($course === '') {
+if ($course === '' || !isset($coursePrices[$course])) {
     $errors[] = 'Kursus wajib dipilih.';
 }
 
 if ($participantType === '') {
     $errors[] = 'Jenis peserta wajib dipilih.';
 }
-
 
 // Jika ada kesalahan
 if (!empty($errors)) {
@@ -57,48 +71,69 @@ if (!empty($errors)) {
 <html lang="id">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Pendaftaran Gagal - KursusKu</title>
 
     <link rel="stylesheet" href="assets/css/style.css">
-
 </head>
 
 <body>
 
+<header class="site-header">
+    <div class="container nav-wrap">
+
+        <a class="brand" href="index.php">
+            KursusKu
+        </a>
+
+        <nav aria-label="Navigasi utama">
+            <a href="index.php">Beranda</a>
+            <a href="index.php#katalog">Katalog</a>
+            <a href="registration.php">Daftar Kursus</a>
+        </nav>
+
+    </div>
+</header>
+
 <main class="container">
 
-    <h1>Pendaftaran Belum Berhasil</h1>
+    <section class="page-intro">
 
-    <p>Silakan periksa kembali data berikut:</p>
+        <p class="eyebrow">
+            Pendaftaran
+        </p>
 
-    <ul>
+        <h1>
+            Pendaftaran Belum Berhasil
+        </h1>
 
-        <?php foreach ($errors as $error): ?>
+        <p>
+            Silakan periksa kembali data berikut:
+        </p>
 
-            <li>
-                <?= htmlspecialchars($error) ?>
-            </li>
+    </section>
 
-        <?php endforeach; ?>
+    <section class="form-card">
 
-    </ul>
+        <ul>
+            <?php foreach ($errors as $error): ?>
+                <li><?= e($error) ?></li>
+            <?php endforeach; ?>
+        </ul>
 
-    <a href="registration.php">
-        Kembali ke Form Pendaftaran
-    </a>
+        <br>
+
+        <a href="registration.php">
+            Kembali ke Form Pendaftaran
+        </a>
+
+    </section>
 
 </main>
 
 </body>
-
 </html>
 
 <?php
@@ -106,48 +141,40 @@ exit;
 }
 
 
-// Nama kursus
-$courseNames = [
-    'web-dasar' => 'Web Dasar',
-    'php-dasar' => 'PHP Dasar',
-    'php-lanjutan' => 'PHP Lanjutan',
-    'laravel-fundamental' => 'Laravel Fundamental',
-    'mysql-dasar' => 'MySQL Dasar',
-    'ui-web-dasar' => 'UI Web Dasar'
-];
+// ===============================
+// PERHITUNGAN HARGA KURSUS
+// ===============================
 
-$courseName = $courseNames[$course] ?? $course;
+$coursePrice = $coursePrices[$course];
 
 
-// Nama jenis peserta
-$participantNames = [
-    'mahasiswa' => 'Mahasiswa',
-    'umum' => 'Umum'
-];
+// ===============================
+// DISKON BERDASARKAN PESERTA
+// ===============================
 
-$participantName =
-    $participantNames[$participantType] ?? $participantType;
+$discountPercent = match ($participantType) {
+    'Mahasiswa' => 10,
+    'Guru' => 15,
+    'Umum' => 5,
+    default => 0
+};
+
+$discount = $coursePrice * $discountPercent / 100;
+
+$total = $coursePrice - $discount;
 
 
-// Nama minat
-$interestNames = [
-    'ui-ux' => 'UI/UX',
-    'database' => 'Database',
-    'backend' => 'Backend'
-];
+// ===============================
+// MINAT BELAJAR
+// ===============================
 
-$selectedInterests = [];
-
-foreach ($interests as $interest) {
-
-    if (isset($interestNames[$interest])) {
-
-        $selectedInterests[] =
-            $interestNames[$interest];
-
-    }
-
+if (!is_array($interest)) {
+    $interest = [$interest];
 }
+
+$interestText = $interest
+    ? implode(', ', $interest)
+    : 'Tidak ada pilihan';
 
 ?>
 
@@ -163,9 +190,14 @@ foreach ($interests as $interest) {
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Hasil Pendaftaran - KursusKu</title>
+    <title>
+        Hasil Pendaftaran - KursusKu
+    </title>
 
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link
+        rel="stylesheet"
+        href="assets/css/style.css"
+    >
 
 </head>
 
@@ -182,7 +214,7 @@ foreach ($interests as $interest) {
             KursusKu
         </a>
 
-        <nav>
+        <nav aria-label="Navigasi utama">
 
             <a href="index.php">
                 Beranda
@@ -203,9 +235,13 @@ foreach ($interests as $interest) {
 </header>
 
 
-<main>
+<main class="container">
 
-    <section class="container">
+    <section class="page-intro">
+
+        <p class="eyebrow">
+            Hasil Pendaftaran
+        </p>
 
         <h1>
             Pendaftaran Berhasil!
@@ -215,115 +251,112 @@ foreach ($interests as $interest) {
             Terima kasih, data pendaftaran kamu sudah diterima.
         </p>
 
+    </section>
+
+
+    <section class="form-card">
+
         <h2>
             Data Pendaftar
         </h2>
 
-        <table>
+        <p>
+            <strong>Nama:</strong>
+            <?= e($name) ?>
+        </p>
 
-            <tr>
-                <th>Nama Lengkap</th>
+        <p>
+            <strong>Email:</strong>
+            <?= e($email) ?>
+        </p>
 
-                <td>
-                    <?= htmlspecialchars($name) ?>
-                </td>
-            </tr>
+        <p>
+            <strong>Nomor HP:</strong>
+            <?= e($phone) ?>
+        </p>
 
-            <tr>
-                <th>Email</th>
+        <p>
+            <strong>Program Studi:</strong>
+            <?= e($studyProgram) ?>
+        </p>
 
-                <td>
-                    <?= htmlspecialchars($email) ?>
-                </td>
-            </tr>
+        <p>
+            <strong>Kursus:</strong>
+            <?= e($course) ?>
+        </p>
 
-            <tr>
-                <th>Nomor HP</th>
+        <p>
+            <strong>Jenis Peserta:</strong>
+            <?= e($participantType) ?>
+        </p>
 
-                <td>
-                    <?= htmlspecialchars($phone) ?>
-                </td>
-            </tr>
+        <p>
+            <strong>Minat Belajar:</strong>
+            <?= e($interestText) ?>
+        </p>
 
-            <tr>
-                <th>Program Studi</th>
+        <p>
+            <strong>Catatan:</strong>
 
-                <td>
-                    <?= htmlspecialchars($studyProgram) ?>
-                </td>
-            </tr>
+            <?php if ($note !== ''): ?>
 
-            <tr>
-                <th>Kursus</th>
+                <?= nl2br(e($note)) ?>
 
-                <td>
-                    <?= htmlspecialchars($courseName) ?>
-                </td>
-            </tr>
+            <?php else: ?>
 
-            <tr>
-                <th>Jenis Peserta</th>
+                Tidak ada
 
-                <td>
-                    <?= htmlspecialchars($participantName) ?>
-                </td>
-            </tr>
+            <?php endif; ?>
 
-            <tr>
-                <th>Minat Tambahan</th>
+        </p>
 
-                <td>
+        <hr>
 
-                    <?php if (!empty($selectedInterests)): ?>
+        <h2>
+            Ringkasan Biaya
+        </h2>
 
-                        <?= htmlspecialchars(
-                            implode(', ', $selectedInterests)
-                        ) ?>
+        <p>
+            <strong>Harga Kursus:</strong>
+            Rp <?= number_format($coursePrice, 0, ',', '.') ?>
+        </p>
 
-                    <?php else: ?>
+        <p>
+            <strong>Jenis Peserta:</strong>
+            <?= e($participantType) ?>
+        </p>
 
-                        Tidak ada
+        <p>
+            <strong>Diskon:</strong>
+            <?= $discountPercent ?>%
+        </p>
 
-                    <?php endif; ?>
+        <p>
+            <strong>Jumlah Diskon:</strong>
+            Rp <?= number_format($discount, 0, ',', '.') ?>
+        </p>
 
-                </td>
-            </tr>
+        <p>
+            <strong>Total Biaya:</strong>
+            Rp <?= number_format($total, 0, ',', '.') ?>
+        </p>
 
-            <tr>
-                <th>Catatan</th>
+        <hr>
 
-                <td>
-
-                    <?php if ($note !== ''): ?>
-
-                        <?= nl2br(
-                            htmlspecialchars($note)
-                        ) ?>
-
-                    <?php else: ?>
-
-                        Tidak ada
-
-                    <?php endif; ?>
-
-                </td>
-            </tr>
-
-        </table>
+        <p>
+            <strong>Source:</strong>
+            <?= e($source) ?>
+        </p>
 
         <br>
 
-        <a
-            href="registration.php"
-            class="cta"
-        >
+        <a href="registration.php">
             Daftar Lagi
         </a>
 
-        <a
-            href="index.php"
-            class="cta"
-        >
+        &nbsp;&nbsp;
+
+        <a href="index.php">
             Kembali ke Beranda
         </a>
 
@@ -332,13 +365,13 @@ foreach ($interests as $interest) {
 </main>
 
 
-<footer>
+<footer class="site-footer">
 
     <div class="container">
 
-        <p>
+        <small>
             &copy; <?= date('Y') ?> KursusKu
-        </p>
+        </small>
 
     </div>
 
