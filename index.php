@@ -1,6 +1,9 @@
 <?php
+declare(strict_types=1);
+
 require_once __DIR__ . '/helpers.php';
 
+// Data kursus
 $courses = [
     ['code' => 'WEB-01', 'name' => 'Web Dasar', 'fee' => 200000, 'quota' => 30, 'registered' => 12, 'start_date' => '2026-09-21'],
     ['code' => 'PHP-01', 'name' => 'PHP Dasar', 'fee' => 250000, 'quota' => 30, 'registered' => 18, 'start_date' => '2026-09-22'],
@@ -8,6 +11,25 @@ $courses = [
     ['code' => 'LAR-01', 'name' => 'Laravel Fundamental', 'fee' => 350000, 'quota' => 25, 'registered' => 25, 'start_date' => '2026-09-28'],
     ['code' => 'DB-01', 'name' => 'MySQL Dasar', 'fee' => 275000, 'quota' => 20, 'registered' => 0, 'start_date' => '2026-10-01'],
     ['code' => 'UI-01', 'name' => 'UI Web Dasar', 'fee' => 225000, 'quota' => 35, 'registered' => 9, 'start_date' => '2026-10-03'],
+];
+
+// Data latihan praktikum (sesuai screenshot)
+$labItems = [
+    ['icon' => '🔄', 'title' => 'Loop Lab', 'desc' => 'Latihan for, while, do-while, foreach, break, continue.', 'link' => 'loop-lab.php'],
+    ['icon' => '📜', 'title' => 'History', 'desc' => 'Riwayat pendaftaran peserta kursus.', 'link' => 'history-dummy.php'],
+    ['icon' => '➕', 'title' => 'Operator Test', 'desc' => 'Latihan operator aritmatika PHP.', 'link' => 'operator-test.php'],
+    ['icon' => '🔤', 'title' => 'String Test', 'desc' => 'Latihan manipulasi string di PHP.', 'link' => 'string-test.php'],
+    ['icon' => '🧠', 'title' => 'Logic Test', 'desc' => 'Latihan operator logika (AND, OR, NOT, XOR).', 'link' => 'logic-test.php'],
+    ['icon' => '📦', 'title' => 'Data Test', 'desc' => 'Latihan tipe data PHP.', 'link' => 'data-test.php'],
+    ['icon' => '🔢', 'title' => 'Bitwise Test', 'desc' => 'Latihan operator bitwise PHP.', 'link' => 'bitwise-test.php'],
+    ['icon' => '⚙️', 'title' => 'Procedure Test', 'desc' => 'Latihan fungsi dan prosedur di PHP.', 'link' => 'procedure-test.php'],
+    ['icon' => '🧪', 'title' => 'Test Functions', 'desc' => 'Uji fungsi helper (formatRupiah, dll).', 'link' => 'test-functions.php'],
+    ['icon' => '📊', 'title' => 'Text Matrix', 'desc' => 'Latihan array multidimensi.', 'link' => 'test-matrix.php'],
+    ['icon' => '🚀', 'title' => 'Type Data Test', 'desc' => 'Uji tipe data lanjutan (gettype, var_export).', 'link' => 'type-data-test.php'],
+    ['icon' => '⏰', 'title' => 'Server Time', 'desc' => 'Menampilkan waktu server (Asia/Jakarta).', 'link' => 'server-time.php'],
+    ['icon' => '👋', 'title' => 'Hello World', 'desc' => 'Latihan dasar PHP pertama.', 'link' => 'hello.php'],
+    ['icon' => '🔗', 'title' => 'GET Demo', 'desc' => 'Demo pengiriman data via URL (metode GET).', 'link' => 'get-demo.php'],
+    ['icon' => '🖥️', 'title' => 'Process Demo', 'desc' => 'Demo pemrosesan form sederhana.', 'link' => 'process.php'],
 ];
 ?>
 <!doctype html>
@@ -241,6 +263,147 @@ $courses = [
       background: var(--soft);
     }
 
+    /* Estimasi Biaya Banner */
+    .estimate-banner {
+      background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
+      border-radius: 1.25rem;
+      padding: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.5rem;
+      color: #fff;
+      margin: 2.5rem 0;
+      flex-wrap: wrap;
+    }
+    .estimate-banner h3 {
+      margin: 0 0 0.5rem;
+      font-size: 1.4rem;
+      color: #fff;
+    }
+    .estimate-banner p {
+      margin: 0;
+      font-size: 0.95rem;
+      color: #d1f2e4;
+      max-width: 500px;
+    }
+    .estimate-banner .btn-light {
+      background: #fff;
+      color: var(--brand-dark);
+      padding: 0.8rem 1.5rem;
+      border-radius: 0.7rem;
+      text-decoration: none;
+      font-weight: 700;
+      white-space: nowrap;
+      transition: transform 0.2s ease;
+    }
+    .estimate-banner .btn-light:hover {
+      transform: scale(1.03);
+    }
+
+    /* Cara Mendaftar */
+    .steps-section {
+      text-align: center;
+      margin: 3rem 0;
+    }
+    .steps-section h2 {
+      color: var(--brand-dark);
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+    .steps-section > p {
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
+      text-align: left;
+    }
+    .step-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      position: relative;
+    }
+    .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--brand);
+      color: #fff;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .step-card h4 {
+      margin: 0 0 0.5rem;
+      color: var(--brand-dark);
+      font-size: 1rem;
+    }
+    .step-card p {
+      margin: 0;
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* --- SECTION LATIHAN PRAKTIKUM PHP --- */
+    .lab-section {
+      text-align: center;
+      margin: 3rem 0;
+    }
+    .lab-section h2 {
+      color: var(--brand-dark);
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+    .lab-section > p {
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+    .lab-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      text-align: left;
+    }
+    .lab-card {
+      display: block;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      text-decoration: none;
+      color: var(--text);
+      transition: all 0.2s ease;
+    }
+    .lab-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 20px -5px rgba(15, 118, 110, 0.15);
+      border-color: var(--brand);
+    }
+    .lab-icon {
+      font-size: 1.8rem;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+    .lab-card h4 {
+      margin: 0 0 0.4rem;
+      color: var(--brand-dark);
+      font-size: 1rem;
+    }
+    .lab-card p {
+      margin: 0;
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
     /* Penyesuaian Tampilan Layar Tablet & HP */
     @media (max-width: 860px) {
       .hero-wrapper {
@@ -257,6 +420,10 @@ $courses = [
       .hero-image-box img {
         height: 250px;
       }
+      .estimate-banner {
+        flex-direction: column;
+        text-align: center;
+      }
     }
   </style>
 </head>
@@ -264,7 +431,6 @@ $courses = [
 <header class="site-header">
   <div class="container nav-wrap">
     <a class="brand-container" href="index.php">
-      <!-- Logo KursusKu -->
       <img src="assets/images/logo.png" alt="Logo KursusKu" class="brand-logo-img" onerror="this.style.display='none'">
       <span>KursusKu</span>
     </a>
@@ -272,7 +438,7 @@ $courses = [
       <a href="index.php"><strong>Beranda</strong></a>
       <a href="#katalog">Katalog Kursus</a>
       <a href="fee-calculator.php">Kalkulator Biaya</a>
-      <a href="history.php">Riwayat Pendaftaran</a>
+      <a href="history-dummy.php">Riwayat Pendaftaran</a>
       <a href="loop-lab.php">Loop Lab</a>
       <a href="registration.php" class="btn-primary" style="padding: 0.45rem 1rem; font-size: 0.9rem;">Daftar Kursus</a>
     </nav>
@@ -280,7 +446,7 @@ $courses = [
 </header>
 
 <main class="container">
-  <!-- Hero Section dengan Gambar Desktop -->
+  <!-- Hero Section -->
   <section class="hero-wrapper">
     <div class="hero-content">
       <span class="hero-badge">Platform Pembelajaran Masa Depan</span>
@@ -292,7 +458,6 @@ $courses = [
       </div>
     </div>
     <div class="hero-image-box">
-      <!-- Berkas gambar hero sesuai ketentuan praktikum Pertemuan 2 -->
       <img src="assets/images/hero-kursus.jpg" alt="Mahasiswa sedang mengikuti kegiatan kursus komputer">
     </div>
   </section>
@@ -313,7 +478,7 @@ $courses = [
     </div>
   </section>
 
-  <!-- Section Media (Video Intro Kursus Sesuai Pertemuan 2) -->
+  <!-- Section Media (Video Intro) -->
   <section id="media" class="media-card">
     <div class="media-layout">
       <div class="video-box">
@@ -333,12 +498,9 @@ $courses = [
 
   <!-- Katalog Table Section -->
   <section id="katalog" class="form-card" style="max-width: 100%;">
-    <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.5rem;">
-      <div>
-        <h2 style="margin: 0; color: var(--brand-dark);">Daftar Kursus Tersedia</h2>
-        <p style="margin: 0.25rem 0 0; color: var(--muted); font-size: 0.9rem;">Pilih program pelatihan yang selaras dengan tujuan karier Anda.</p>
-      </div>
-      <span style="font-size: 0.85rem; color: var(--muted);">Data terhubung sistem dinamis</span>
+    <div style="text-align: center; margin-bottom: 1.5rem;">
+      <h2 style="margin: 0; color: var(--brand-dark);">Katalog Kursus & Status Kuota</h2>
+      <p style="margin: 0.25rem 0 0; color: var(--muted); font-size: 0.9rem;">Pemeriksaan status ketersediaan kursi dan jadwal kelas terupdate.</p>
     </div>
 
     <div class="table-container">
@@ -347,10 +509,12 @@ $courses = [
           <tr>
             <th>Kode</th>
             <th>Nama Kursus</th>
-            <th>Biaya Pendaftaran</th>
-            <th>Mulai Belajar</th>
-            <th>Sisa Kuota</th>
+            <th>Biaya</th>
+            <th>Kuota</th>
+            <th>Terdaftar</th>
+            <th>Sisa Kursi</th>
             <th>Status</th>
+            <th>Aksi</th>
           </tr>
         </thead>
         <tbody>
@@ -358,18 +522,86 @@ $courses = [
             <?php
             $status = statusKursus($course['quota'], $course['registered']);
             $statusClass = ($status === 'Penuh') ? 'badge-full' : 'badge-available';
+            $sisa = sisaKursi($course['quota'], $course['registered']);
             ?>
             <tr>
               <td><span class="course-code"><?= htmlspecialchars($course['code']) ?></span></td>
               <td class="course-title"><?= htmlspecialchars(trim($course['name'])) ?></td>
               <td style="font-weight: 700;"><?= rupiah($course['fee']) ?></td>
-              <td><?= formatTanggal($course['start_date']) ?></td>
-              <td><?= sisaKursi($course['quota'], $course['registered']) ?> kursi</td>
+              <td><?= (int)$course['quota'] ?></td>
+              <td><?= (int)$course['registered'] ?></td>
+              <td><?= $sisa ?> kursi</td>
               <td><span class="<?= $statusClass ?>"><?= $status ?></span></td>
+              <td>
+                <?php if ($status === 'Penuh'): ?>
+                  <span style="color: var(--muted); font-size: 0.85rem;">Penuh</span>
+                <?php else: ?>
+                  <a href="register.php?course=<?= urlencode($course['code']) ?>" class="btn-primary" style="padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: 0.5rem;">Daftar</a>
+                <?php endif; ?>
+              </td>
             </tr>
           <?php endforeach; ?>
         </tbody>
       </table>
+    </div>
+  </section>
+
+  <!-- Estimasi Biaya Banner -->
+  <section class="estimate-banner">
+    <div>
+      <h3>Estimasi Biaya Kursus</h3>
+      <p>Hitung estimasi total biaya kursus berdasarkan jumlah peserta, diskon khusus, dan biaya administrasi.</p>
+    </div>
+    <a href="fee-calculator.php" class="btn-light">Hitung Estimasi Biaya</a>
+  </section>
+
+  <!-- Cara Mendaftar Section -->
+  <section class="steps-section">
+    <h2>Cara Mendaftar</h2>
+    <p>5 langkah mudah untuk memulai kelas pertama Anda di KursusKu.</p>
+
+    <div class="steps-grid">
+      <div class="step-card">
+        <span class="step-number">1</span>
+        <h4>Pilih Kursus</h4>
+        <p>Pilih kelas yang diminati pada katalog kursus di atas.</p>
+      </div>
+      <div class="step-card">
+        <span class="step-number">2</span>
+        <h4>Buka Form Pendaftaran</h4>
+        <p>Klik tombol "Daftar Kursus" pada menu atau daftar katalog.</p>
+      </div>
+      <div class="step-card">
+        <span class="step-number">3</span>
+        <h4>Isi Data Diri</h4>
+        <p>Lengkapi formulir dengan data diri dan informasi yang valid.</p>
+      </div>
+      <div class="step-card">
+        <span class="step-number">4</span>
+        <h4>Konfirmasi Data</h4>
+        <p>Periksa kembali ringkasan data dan program pilihan Anda.</p>
+      </div>
+      <div class="step-card">
+        <span class="step-number">5</span>
+        <h4>Selesai & Simpan Bukti</h4>
+        <p>Kirimkan pendaftaran dan simpan konfirmasi bukti pendaftaran Anda.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LATIHAN PRAKTIKUM PHP SECTION (BARU) -->
+  <section class="lab-section">
+    <h2>🚀 Latihan Praktikum PHP</h2>
+    <p>Kumpulan file latihan untuk memperdalam materi PHP.</p>
+
+    <div class="lab-grid">
+      <?php foreach ($labItems as $item): ?>
+        <a href="<?= e($item['link']) ?>" class="lab-card">
+          <span class="lab-icon"><?= $item['icon'] ?></span>
+          <h4><?= e($item['title']) ?></h4>
+          <p><?= e($item['desc']) ?></p>
+        </a>
+      <?php endforeach; ?>
     </div>
   </section>
 </main>
