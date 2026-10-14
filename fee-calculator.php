@@ -1,73 +1,57 @@
 <?php
-require_once __DIR__ . '/helpers.php';
-function hitungTotal(
-    int $price,
-    int $qty,
-    float $discount = 0
-): int {
-    $subtotal = $price * $qty;
-    $potongan = $subtotal * ($discount / 100);
-
-    return (int) round($subtotal - $potongan);
-}
-
-$price = 250000;
-$qty = 2;
-$discount = 10;
-
-$subtotal = $price * $qty;
-$total = hitungTotal($price, $qty, $discount);
-
+$testCases = [
+    [1, 350000, 1, 0, 25000, 375000],
+    [2, 350000, 1, 10, 25000, 340000],
+    [3, 350000, 2, 25, 25000, 550000],
+    [4, 0, 1, 10, 0, 0],
+    [5, 2500000, 3, 10, 50000, 6800000],
+];
 ?>
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Kalkulator Biaya - KursusKu</title>
-
-    <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8">
+    <title>Test Case Matrix - KursusKu</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 24px; background: #f5f7f6; }
+        table { width: 100%; border-collapse: collapse; background: #fff; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: center; }
+        th { background: #0f766e; color: white; }
+        .pass { color: green; font-weight: bold; }
+        .fail { color: red; font-weight: bold; }
+    </style>
 </head>
-
 <body>
-
-<main>
-
-    <h1>Kalkulator Biaya Kursus</h1>
-
-    <section>
-
-        <p>
-            Harga Kursus:
-            <strong><?= rupiah($price) ?></strong>
-        </p>
-
-        <p>
-            Jumlah Peserta:
-            <strong><?= $qty ?></strong>
-        </p>
-
-        <p>
-            Subtotal:
-            <strong><?= rupiah($subtotal) ?></strong>
-        </p>
-
-        <p>
-            Diskon:
-            <strong><?= $discount ?>%</strong>
-        </p>
-
-        <p>
-            Total Bayar:
-            <strong><?= rupiah($total) ?></strong>
-        </p>
-
-    </section>
-
-</main>
-
+    <h2>Hasil Uji Matriks 5 Test Case (Milestone 3)</h2>
+    <table>
+        <tr>
+            <th>No</th>
+            <th>Fee</th>
+            <th>Peserta</th>
+            <th>Diskon</th>
+            <th>Admin</th>
+            <th>Expected Total</th>
+            <th>Actual Total</th>
+            <th>Status</th>
+        </tr>
+        <?php foreach ($testCases as [$no, $fee, $qty, $disc, $admin, $expected]): ?>
+            <?php
+            $subtotal = $fee * $qty;
+            $discount = intdiv($subtotal * $disc, 100);
+            $actual = $subtotal - $discount + $admin;
+            $status = ($actual === $expected) ? 'PASS' : 'FAIL';
+            ?>
+            <tr>
+                <td><?= $no ?></td>
+                <td>Rp <?= number_format($fee, 0, ',', '.') ?></td>
+                <td><?= $qty ?></td>
+                <td><?= $disc ?>%</td>
+                <td>Rp <?= number_format($admin, 0, ',', '.') ?></td>
+                <td>Rp <?= number_format($expected, 0, ',', '.') ?></td>
+                <td>Rp <?= number_format($actual, 0, ',', '.') ?></td>
+                <td class="<?= strtolower($status) ?>"><?= $status ?></td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
 </body>
 </html>
