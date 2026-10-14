@@ -4,6 +4,12 @@ require __DIR__ . '/helpers.php';
 
 $x = true;
 $y = false;
+
+// ===== Soal No. 21: Cek Kuota =====
+$quota = 30;
+$registered = 18;
+$isFull  = ($registered >= $quota);  // false
+$hasSeat = ($registered < $quota);   // true
 ?>
 <!doctype html>
 <html lang="id">
@@ -51,6 +57,7 @@ $y = false;
     <div class="test-card">
         <div class="test-header"><span class="icon">🧠</span><h1>Logic Test</h1></div>
         <p class="test-subtitle">Latihan operator logika (AND, OR, NOT, XOR).</p>
+
         <p class="test-values">Nilai: x = <?= $x ? 'true' : 'false' ?>, y = <?= $y ? 'true' : 'false' ?></p>
         <hr>
         <div class="badge-grid">
@@ -59,6 +66,14 @@ $y = false;
             <span class="badge-result">NOT x = <?= (!$x) ? 'true' : 'false' ?></span>
             <span class="badge-result">x XOR y = <?= ($x xor $y) ? 'true' : 'false' ?></span>
         </div>
+
+        <hr>
+        <p class="test-values">Cek Kuota: quota = <?= $quota ?>, registered = <?= $registered ?></p>
+        <div class="badge-grid">
+            <span class="badge-result">var_dump($isFull) = <?php var_dump($isFull); ?></span>
+            <span class="badge-result">var_dump($hasSeat) = <?php var_dump($hasSeat); ?></span>
+        </div>
+
         <a href="index.php" class="btn-back">← Kembali ke Beranda</a>
     </div>
 </main>

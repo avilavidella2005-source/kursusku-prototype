@@ -1,6 +1,6 @@
 <?php
 // helpers.php
-// File ini hanya berisi kumpulan fungsi.
+// File ini hanya berisi kumpulan FUNGSI.
 // JANGAN require helpers.php di dalam file ini sendiri.
 
 function rupiah(int $amount): string
