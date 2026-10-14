@@ -2,6 +2,9 @@
 declare(strict_types=1);
 
 require __DIR__ . '/helpers.php';
+
+$a = 10;
+$b = 3;
 ?>
 <!doctype html>
 <html lang="id">
@@ -20,15 +23,13 @@ require __DIR__ . '/helpers.php';
             --muted: #4b635d;
             --line: #d1e7dd;
         }
-
+        * { box-sizing: border-box; }
         body {
             background: linear-gradient(180deg, #eaf7f2 0%, #ffffff 100%);
             min-height: 100vh;
             margin: 0;
             font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
         }
-
-        /* Header */
         .site-header {
             background: var(--brand);
             padding: 0.9rem 0;
@@ -52,12 +53,8 @@ require __DIR__ . '/helpers.php';
             text-decoration: none;
             margin-left: 1.2rem;
             font-size: 0.9rem;
-            font-weight: 500;
-            transition: color 0.2s ease;
         }
-        .site-header nav a:hover {
-            color: #fff;
-        }
+        .site-header nav a:hover { color: #fff; }
         .site-header nav a.btn-nav {
             background: #fff;
             color: var(--brand-dark);
@@ -65,8 +62,6 @@ require __DIR__ . '/helpers.php';
             border-radius: 0.5rem;
             font-weight: 700;
         }
-
-        /* Card Utama */
         .test-card {
             max-width: 680px;
             margin: 4rem auto;
@@ -85,9 +80,7 @@ require __DIR__ . '/helpers.php';
             width: 60%;
             height: 4px;
             background: var(--brand);
-            border-radius: 0 0 4px 0;
         }
-
         .test-header {
             display: flex;
             align-items: center;
@@ -97,7 +90,6 @@ require __DIR__ . '/helpers.php';
         .test-header .icon {
             font-size: 1.6rem;
             color: var(--brand-dark);
-            font-weight: 700;
         }
         .test-header h1 {
             margin: 0;
@@ -105,27 +97,22 @@ require __DIR__ . '/helpers.php';
             color: var(--text);
             font-weight: 800;
         }
-
         .test-subtitle {
             color: var(--muted);
             font-size: 0.95rem;
             margin: 0 0 1.75rem;
         }
-
         .test-values {
             font-weight: 700;
             color: var(--text);
             font-size: 1.05rem;
             margin-bottom: 1rem;
         }
-
         hr {
             border: none;
             border-top: 1px solid var(--line);
             margin: 1rem 0 1.5rem;
         }
-
-        /* Badge Hasil */
         .badge-grid {
             display: flex;
             flex-wrap: wrap;
@@ -143,8 +130,6 @@ require __DIR__ . '/helpers.php';
             border: 1px solid var(--line);
             white-space: nowrap;
         }
-
-        /* Tombol */
         .btn-back {
             display: inline-block;
             background: var(--brand);
@@ -154,13 +139,8 @@ require __DIR__ . '/helpers.php';
             border-radius: 0.6rem;
             font-weight: 700;
             font-size: 0.95rem;
-            transition: background 0.2s ease;
         }
-        .btn-back:hover {
-            background: var(--brand-dark);
-        }
-
-        /* Footer */
+        .btn-back:hover { background: var(--brand-dark); }
         .site-footer {
             text-align: center;
             padding: 1.5rem 0;
@@ -173,7 +153,6 @@ require __DIR__ . '/helpers.php';
 </head>
 <body>
 
-<!-- Header -->
 <header class="site-header">
     <div class="container">
         <a href="index.php" class="brand">KursusKu</a>
@@ -186,7 +165,6 @@ require __DIR__ . '/helpers.php';
     </div>
 </header>
 
-<!-- Card Utama -->
 <main>
     <div class="test-card">
         <div class="test-header">
@@ -195,7 +173,6 @@ require __DIR__ . '/helpers.php';
         </div>
         <p class="test-subtitle">Latihan operator aritmatika PHP.</p>
 
-        <?php $a = 10; $b = 3; ?>
         <p class="test-values">Nilai: a = <?= $a ?>, b = <?= $b ?></p>
 
         <hr>
@@ -213,7 +190,6 @@ require __DIR__ . '/helpers.php';
     </div>
 </main>
 
-<!-- Footer -->
 <footer class="site-footer">
     <p>&copy; <?= date('Y') ?> KursusKu - Praktikum Pemrograman Web III.</p>
 </footer>
